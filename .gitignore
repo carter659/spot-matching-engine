@@ -1,0 +1,74 @@
+# Maven / Java build output
+target/
+dist/
+out/
+*.class
+*.jar
+*.war
+*.ear
+!**/.mvn/wrapper/maven-wrapper.jar
+
+# Runtime data, local databases and engine journals
+data/
+.runtime/
+logs/
+*.log
+*.log.*
+*.pid
+*.pid.lock
+*.mv.db
+*.trace.db
+*.h2.db
+*.lock.db
+*.journal
+*.journal.settings
+*.journal.snapshot
+
+# JVM crash reports and profiling dumps
+hs_err_pid*
+replay_pid*
+*.hprof
+*.jfr
+
+# Eclipse / Spring Tool Suite
+.project
+.classpath
+.factorypath
+.settings/
+.apt_generated/
+.apt_generated_tests/
+.springBeans
+.sts4-cache/
+
+# IntelliJ IDEA / VS Code
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+
+# Local secrets and overrides (keep shared application-dev.properties)
+.env
+.env.*
+!.env.example
+!.env.sample
+!.env.template
+application-local.properties
+application-local.yml
+application-local.yaml
+
+# OS and editor temporary files
+.DS_Store
+Thumbs.db
+Desktop.ini
+*~
+*.swp
+*.swo
+*.tmp
+*.bak
+
+# Optional frontend dependencies and coverage
+node_modules/
+coverage/
+
+# Keep source, docs, images, scripts and Maven Wrapper in version control.

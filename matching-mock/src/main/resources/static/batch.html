@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>BITUAN · 批量下单</title><link rel="stylesheet" href="/portal.css"><script src="/portal-theme.js" defer></script><script type="module" src="/batch.js"></script>
+<style>.batch-fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:24px;margin:32px 0}label{display:grid;gap:10px}select,input{box-sizing:border-box;width:100%;padding:14px;border:1px solid #53636c;border-radius:8px;background:transparent;color:inherit}option{color:#111}fieldset{border:0;padding:0;margin:0}progress{width:100%;height:20px;margin:24px 0}button:disabled{opacity:.5;cursor:not-allowed}.batch-summary{padding:24px;border:1px solid #53636c;border-radius:12px;overflow-wrap:anywhere}</style></head>
+<body><main><header><b>◈ BITUAN / 批量下单</b><nav><a href="/">返回首页</a><a href="/trading.html">查看委托 →</a></nav></header>
+<h1>批量投递限价单</h1><p>每笔订单使用相同交易对、方向、单价和数量，各自生成独立雪花订单 ID。每批最多 1000 单。</p>
+<form id="batch-form"><fieldset id="fields" disabled><div class="batch-fields">
+<label>交易对<select id="symbol" required></select></label><label>买卖方向<select id="side"><option value="BUY">买入</option><option value="SELL">卖出</option></select></label>
+<label>委托单价（USDT）<input id="price" inputmode="decimal" required></label><label>每单数量（基础币）<input id="quantity" inputmode="decimal" required></label>
+<label>下单个数<input id="count" type="number" min="1" max="1000" step="1" value="1000" required></label>
+<label>成交策略<select id="policy"><option value="GTC">GTC · 持续有效</option><option value="IOC">IOC · 立即成交剩余取消</option><option value="FOK">FOK · 全部成交或取消</option></select></label>
+</div><p id="precision"></p><button type="submit">开始批量下单</button></fieldset></form>
+<section class="batch-summary"><p id="summary">尚未创建批次</p><progress id="progress" max="1000" value="0"></progress><p id="status" role="status" aria-live="polite">正在读取交易对…</p>
+<button id="pause" type="button" disabled>暂停后续投递</button><button id="resume" type="button" disabled>继续 / 重试原批次</button><button id="new" type="button" disabled>新建批次</button></section>
+<p>投递确认不代表成交。撮合状态请到交易页选择对应交易对，在委托记录中查看。暂停仅停止后续发送，已投递订单不会撤销。刷新后可继续原批次；关闭页面不会在后台继续发送。</p>
+</main></body></html>

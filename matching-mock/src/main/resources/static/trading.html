@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>BITUAN · 现货撮合测试</title>
+  <link rel="stylesheet" href="/trading.css">
+  <link rel="stylesheet" href="/trading-live.css">
+  <script type="module" src="/trading.js"></script>
+</head>
+<body>
+<main id="spot-prototype">
+  <header class="sp-top"><div class="sp-brand"><b>◈</b> BITUAN</div><nav class="sp-header-nav" aria-label="页面导航"><span class="sp-nav" aria-current="page">现货交易</span><a href="/">测试中心</a><a href="/parameters.html">参数配置</a></nav><span class="sp-badge">MOCK · 撮合测试环境</span><button type="button" class="sp-quiet" id="theme-toggle" aria-label="切换深浅主题">切换主题</button></header>
+  <div class="sp-connection" role="status" aria-live="polite"><span id="connection">正在连接 mock 服务…</span><span id="synced">尚未同步</span><button type="button" class="sp-quiet" id="refresh">刷新</button></div>
+  <section class="sp-ticker" aria-label="当前行情"><div><label class="sp-pair"><select id="symbol-select" aria-label="切换交易对"><option value="BTC_USDT">BTC / USDT</option></select></label><small id="pair-description">BTC · 现货测试</small></div><div><div class="sp-price" id="last-price">—</div><small>最新成交价格</small></div><div class="sp-stat"><small>最优买价</small><span id="best-bid">—</span></div><div class="sp-stat"><small>最优卖价</small><span id="best-ask">—</span></div><div class="sp-stat"><small>行情序号</small><span id="market-sequence">—</span></div></section>
+  <div class="sp-main">
+    <section class="sp-panel sp-chart-panel" aria-label="本页成交记录"><div class="sp-panel-head">成交走势 <span class="sp-muted">本页接收到的成交</span></div><div class="sp-chart-tabs"><span>实时采样</span><span id="chart-count">0 笔成交</span></div><div class="sp-chart sp-live-chart"><svg id="price-chart" role="img" aria-label="成交价格变化" preserveAspectRatio="none"><polyline id="price-line" fill="none" stroke="currentColor" stroke-width="2" vector-effect="non-scaling-stroke"></polyline></svg><div class="sp-y"><span id="chart-high">—</span><span id="chart-low">—</span></div><div class="sp-chart-placeholder" id="chart-empty">等待真实成交数据</div></div><div class="sp-x"><span>较早成交</span><span>最新成交</span></div></section>
+    <section class="sp-panel" aria-label="订单簿"><div class="sp-panel-head">订单簿 <span class="sp-muted">Kafka 行情</span></div><div class="sp-book-label"><span>价格 (USDT)</span><span>数量 (<span data-base-asset>BTC</span>)</span><span>累计 (<span data-base-asset>BTC</span>)</span></div><div id="asks"><div class="sp-empty">等待卖盘</div></div><div class="sp-mid"><span id="book-price">—</span> <span class="sp-muted">USDT</span></div><div id="bids"><div class="sp-empty">等待买盘</div></div><div class="sp-book-foot" id="book-help">点击盘口价格填入限价单。<br>盘口数据尚未到达。</div></section>
+    <section class="sp-panel sp-tape" aria-label="最新成交列表">
+      <div class="sp-panel-head">最新成交 <span class="sp-muted" id="trade-total">0 笔</span></div>
+      <div class="sp-tape-scroll" tabindex="0" role="region" aria-label="最新成交记录，可滚动">
+        <table><thead><tr><th title="mock 接收时间">时间</th><th title="颜色表示相对上一笔成交价格的涨跌，不代表买卖方向">价格 (USDT)</th><th>数量 (<span data-base-asset>BTC</span>)</th></tr></thead><tbody id="trade-tape"></tbody></table>
+        <div class="sp-empty" id="empty-trades">暂无成交</div>
+      </div>
+      <div class="sp-tape-note">Kafka · 最近 100 笔 · 时间为接收时间</div>
+    </section>
+    <section class="sp-panel sp-form" aria-label="订单投递">
+      <div class="sp-side" aria-label="买卖方向"><button type="button" data-side="BUY" aria-pressed="true">买入</button><button type="button" data-side="SELL" aria-pressed="false">卖出</button></div>
+      <div class="sp-types" aria-label="订单类型"><button type="button" data-type="LIMIT" aria-pressed="true">限价单</button><button type="button" data-type="MARKET" aria-pressed="false">市价单</button></div>
+      <form id="order-form">
+        <div id="limit-price"><label class="sp-label" for="price">委托价格</label><div class="sp-input"><input id="price" name="price" type="text" inputmode="decimal" autocomplete="off" value="65000.00" required><span>USDT</span></div></div>
+        <div id="market-price" hidden><div class="sp-label">成交价格</div><div class="sp-market-price">按可用对手盘价格成交</div></div>
+        <label class="sp-label" for="quantity"><span>委托数量</span><span class="sp-muted">买卖均按 <span data-base-asset>BTC</span> 数量</span></label><div class="sp-input"><input id="quantity" name="quantity" type="text" inputmode="decimal" autocomplete="off" value="0.3500" required><span data-base-asset>BTC</span></div>
+        <div id="tif"><div class="sp-label">有效期 / 成交策略</div><div class="sp-policies" aria-label="限价单成交策略"><button type="button" data-policy="GTC" aria-pressed="true">GTC</button><button type="button" data-policy="IOC" aria-pressed="false">IOC</button><button type="button" data-policy="FOK" aria-pressed="false">FOK</button></div></div>
+        <div class="sp-policy-help" id="policy-help">持续有效，未成交部分保留在订单簿，直到成交或撤销。</div>
+        <div class="sp-summary" aria-live="polite"><div class="sp-summary-row"><span>盘口预估可成交</span><strong id="estimated-fill">—</strong></div><div class="sp-summary-row"><span id="rest-label">预计剩余挂单</span><strong id="estimated-rest">—</strong></div><div class="sp-summary-row"><span>预计成交金额</span><strong id="estimated-cost">—</strong></div></div>
+        <div class="sp-validation" id="validation" role="alert" hidden></div><button type="submit" class="sp-submit" id="submit-order" disabled>投递买单 · BTC</button><div class="sp-footnote">测试订单将实际投递。预估未含手续费，以引擎结果为准。</div>
+      </form>
+      <button type="button" class="sp-example" id="example-order">投递示例卖单：65,000 × 0.3000 BTC</button>
+    </section>
+  </div>
+  <section class="sp-feedback" aria-label="投递状态"><div id="notice" role="status" aria-live="polite">连接成功后可投递测试订单。</div><div id="retry-box" hidden><span id="retry-help">上次投递结果未确认，将使用原命令重试。</span><button type="button" id="retry-request" class="sp-quiet">重试原委托</button></div><div id="outbox-box" hidden><span id="outbox-count"></span><button type="button" id="retry-outbox" class="sp-quiet">重试待确认投递</button></div></section>
+  <section class="sp-orders" aria-label="委托列表"><div class="sp-order-tabs"><button type="button" data-list="open" aria-pressed="true">当前委托 <span id="open-count">0</span></button><button type="button" data-list="all" aria-pressed="false">委托记录</button><button type="button" id="cancel-all" disabled title="撤销当前交易对所有可撤委托">批量撤单</button><span class="sp-muted">成交状态来自 RabbitMQ 回执</span></div><div class="sp-table-wrap"><table><thead><tr><th>订单 / 方向</th><th>类型 / 策略</th><th>委托价格</th><th>委托 / 成交 (<span data-base-asset>BTC</span>)</th><th>剩余 / 取消 (<span data-base-asset>BTC</span>)</th><th>状态</th><th>操作</th></tr></thead><tbody id="orders"></tbody></table></div><div class="sp-empty" id="empty-orders">暂无当前委托</div><div class="sp-order-pagination" style="display:flex;justify-content:flex-end;align-items:center;gap:14px;padding:16px;flex-wrap:wrap"><label>每页 <select id="order-page-size" aria-label="每页委托条数"><option value="20">20 条</option><option value="50">50 条</option><option value="100">100 条</option></select></label><span id="order-page-info" aria-live="polite"></span><button type="button" id="order-prev">上一页</button><button type="button" id="order-next">下一页</button></div></section>
+</main>
+</body>
+</html>

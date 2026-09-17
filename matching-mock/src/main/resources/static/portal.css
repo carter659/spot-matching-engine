@@ -1,0 +1,14 @@
+:root{font-family:system-ui,"Microsoft YaHei",sans-serif;color:#dce6ed;background:#101719;color-scheme:dark}*{box-sizing:border-box}body{margin:0}main{max-width:1120px;margin:0 auto;padding:40px 24px}header{display:flex;justify-content:space-between;gap:20px;align-items:center;border-bottom:1px solid #2a373b;padding-bottom:24px}h1{font-size:36px;margin:48px 0 12px}h2{font-size:26px}p{color:#a3b4bc;line-height:1.8}a{color:#36d4b4;text-decoration:none}.cards{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:36px 0}.card{display:block;border:1px solid #304249;background:#182327;padding:32px;border-radius:16px;color:inherit}.card:hover{border-color:#36d4b4}.card small,.card strong{color:#36d4b4}.table-wrap{overflow:auto;border:1px solid #304249;border-radius:12px;margin-top:24px}table{width:100%;border-collapse:collapse;white-space:nowrap}th,td{padding:14px;text-align:left;border-bottom:1px solid #2a373b}th{color:#a3b4bc}input{background:#101719;color:#edf4f5;border:1px solid #40535b;padding:10px;border-radius:6px;width:170px}button{background:#20bb9b;color:#071e18;border:0;padding:10px 16px;border-radius:6px;cursor:pointer}button:disabled{opacity:.5;cursor:wait}.error{color:#ff8795}nav{display:flex;gap:20px}.status{min-height:28px;color:#36d4b4}@media(max-width:650px){.cards{grid-template-columns:1fr}header{align-items:flex-start;flex-direction:column}h1{font-size:28px}}
+:root[data-theme="light"]{color:#20333c;background:#f3f7f8;color-scheme:light}
+:root[data-theme="light"] header{border-color:#ccdadd}
+:root[data-theme="light"] p,:root[data-theme="light"] th{color:#526975}
+:root[data-theme="light"] a,:root[data-theme="light"] .card small,:root[data-theme="light"] .card strong,:root[data-theme="light"] .status{color:#007c66}
+:root[data-theme="light"] .card{background:#fff;border-color:#ccdadd;color:#20333c}
+:root[data-theme="light"] .card:hover{border-color:#007c66}
+:root[data-theme="light"] input{background:#fff;color:#20333c;border-color:#a4bbc5}
+:root[data-theme="light"] .table-wrap,:root[data-theme="light"] th,:root[data-theme="light"] td{border-color:#ccdadd}
+:root[data-theme="light"] .error{color:#b42338}
+.theme-controls{display:flex;align-items:center;justify-content:flex-end;gap:10px;flex-wrap:wrap}
+.theme-status{font-size:12px;max-width:240px}
+button:focus-visible,a:focus-visible{outline:2px solid #20bb9b;outline-offset:4px}
+.pair-actions{display:flex;gap:8px}.pair-add{margin-top:24px;padding:20px;border:1px solid #40535b;border-radius:12px}.pair-add label{display:inline-flex;flex-direction:column;gap:8px;margin:0 16px 12px 0}.pair-add button{margin-right:8px}#reload{margin-right:12px}

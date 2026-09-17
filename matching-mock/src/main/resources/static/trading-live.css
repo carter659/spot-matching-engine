@@ -1,0 +1,88 @@
+:root{color-scheme:light dark}html[data-theme=light]{color-scheme:light}html[data-theme=dark]{color-scheme:dark}
+body{margin:0;padding:24px;background:light-dark(#edf1f5,#0b1016);font-family:'Segoe UI','Microsoft YaHei',sans-serif}
+#spot-prototype .sp-tape{background:var(--sp-panel);min-width:0;display:flex;flex-direction:column}
+#spot-prototype .sp-tape .sp-panel-head{border-bottom:1px solid var(--sp-line)}
+#spot-prototype .sp-tape-scroll{height:540px;overflow:auto;scrollbar-width:thin;scrollbar-color:var(--sp-line) transparent;scrollbar-gutter:stable;outline-offset:-2px}
+#spot-prototype .sp-tape table{width:100%;min-width:0;table-layout:fixed;border-collapse:collapse;font-variant-numeric:tabular-nums}
+#spot-prototype .sp-tape th,#spot-prototype .sp-tape td{padding:7px 14px;border:0;white-space:nowrap;text-align:right;font-size:13px;line-height:19px}
+#spot-prototype .sp-tape th{position:sticky;top:0;background:var(--sp-panel);color:var(--sp-muted);font-size:12px;font-weight:400;z-index:1;padding-block:12px}
+#spot-prototype .sp-tape th:first-child,#spot-prototype .sp-tape td:first-child{text-align:left;width:27%}
+#spot-prototype .sp-tape th:nth-child(2){width:40%}
+#spot-prototype .sp-tape tbody tr:hover{background:var(--sp-soft)}
+#spot-prototype .sp-tape-note{padding:10px 14px;color:var(--sp-muted);font-size:11px;border-top:1px solid var(--sp-line);margin-top:auto}
+#spot-prototype .sp-live-chart{height:360px}
+#spot-prototype{max-width:none;margin:0;box-shadow:none}
+#spot-prototype .sp-connection{display:flex;gap:16px;align-items:center;padding:9px 22px;background:var(--sp-panel);border-bottom:1px solid var(--sp-line);font-size:12px;color:var(--sp-muted)}
+#spot-prototype #connection{color:var(--sp-buy)}#spot-prototype #connection.failed{color:var(--sp-sell)}#spot-prototype #synced{margin-left:auto}
+#spot-prototype .sp-quiet{border:1px solid var(--sp-line);background:var(--sp-panel);padding:5px 10px;border-radius:5px;font-size:12px;color:var(--sp-text)}
+#spot-prototype .sp-feedback{background:var(--sp-panel);padding:14px 18px;border-block:1px solid var(--sp-line);font-size:12px;overflow-wrap:anywhere}
+#spot-prototype #notice{color:var(--sp-buy)}#spot-prototype #notice.error{color:var(--sp-sell)}
+#spot-prototype #retry-box,#spot-prototype #outbox-box{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:10px;color:var(--sp-muted)}
+#spot-prototype .sp-example{background:var(--sp-panel);color:var(--sp-muted);border:1px dashed var(--sp-line);width:100%;margin-top:16px;padding:10px 6px;border-radius:6px;font-size:12px}
+#spot-prototype .sp-chart-placeholder{position:absolute;inset:0 50px 0 0;display:grid;place-items:center;color:var(--sp-muted);font-size:12px}
+#spot-prototype .sp-live-chart svg{color:var(--sp-buy)}#spot-prototype .sp-y{justify-content:space-between}
+#spot-prototype .sp-orders td small{display:block;color:var(--sp-muted);font-size:11px}#spot-prototype .sp-order-tabs{align-items:center;flex-wrap:wrap}
+#spot-prototype .sp-order-tabs .sp-muted{margin-left:auto}#spot-prototype .sp-order-id{max-width:155px;overflow:hidden;text-overflow:ellipsis}
+#spot-prototype .sp-order-reason{max-width:240px;white-space:normal;overflow-wrap:anywhere}
+#spot-prototype .sp-chart-panel{display:block}#spot-prototype .sp-book-row{min-height:32px}#spot-prototype .sp-summary strong{font-weight:500;overflow-wrap:anywhere;text-align:right}
+#spot-prototype button:focus-visible,#spot-prototype input:focus-visible{outline:2px solid var(--sp-buy);outline-offset:3px}
+/* Trading terminal: chart | order book | market trades | order entry. */
+body{padding:0;background:light-dark(#e4e8ed,#07090b)}
+#spot-prototype{--sp-panel:light-dark(#fff,#111315);--sp-line:light-dark(#e3e7ec,#202328);--sp-muted:light-dark(#687583,#818995);--sp-buy:light-dark(#00836b,#00bc90);--sp-sell:light-dark(#cd354e,#fa3e5c);border:0;border-radius:0;min-height:100vh;display:grid;grid-template-columns:minmax(360px,1fr) 250px 260px 300px;grid-template-rows:auto auto 76px minmax(530px,60vh) minmax(260px,1fr);gap:4px;background:light-dark(#e4e8ed,#07090b)}
+#spot-prototype .sp-main{display:contents}
+#spot-prototype .sp-top{grid-column:1/-1;padding:10px 18px}
+#spot-prototype .sp-connection{grid-column:1/-1;padding:6px 18px}
+#spot-prototype .sp-ticker{grid-column:1;grid-row:3;margin:0;padding:12px 16px;gap:20px;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;flex-wrap:nowrap}
+#spot-prototype .sp-ticker>div{flex-shrink:0}
+#spot-prototype .sp-pair{font-size:18px}
+#spot-prototype #symbol-select{font:inherit;font-weight:500;color:var(--sp-text);background:var(--sp-panel);border:0;border-radius:4px;padding:4px 22px 4px 0;cursor:pointer;max-width:100%}
+#spot-prototype #symbol-select:focus-visible{outline:2px solid var(--sp-buy);outline-offset:3px}
+#spot-prototype .sp-price{font-size:22px}
+#spot-prototype .sp-chart-panel{grid-column:1;grid-row:4;display:flex;flex-direction:column;min-height:0}
+#spot-prototype .sp-chart-panel .sp-panel-head{border-bottom:1px solid var(--sp-line);margin-bottom:12px}
+#spot-prototype .sp-live-chart{flex:1;min-height:240px;height:auto;margin:0 16px;background-image:linear-gradient(var(--sp-line) 1px,transparent 1px),linear-gradient(90deg,var(--sp-line) 1px,transparent 1px);background-size:100% 64px,90px 100%}
+#spot-prototype .sp-x{padding:12px 20px}
+#spot-prototype .sp-panel[aria-label="订单簿"]{grid-column:2;grid-row:3/5;overflow:auto;scrollbar-width:thin}
+#spot-prototype .sp-tape{grid-column:3;grid-row:3/5;min-height:0}
+#spot-prototype .sp-tape-scroll{flex:1;height:0;min-height:0}
+#spot-prototype .sp-tape th,#spot-prototype .sp-tape td{padding-inline:9px;padding-block:5px;font-size:12px}
+#spot-prototype .sp-tape th{font-size:11px;padding-block:12px}
+#spot-prototype .sp-form{grid-column:4;grid-row:3/5;overflow:auto;padding:16px;scrollbar-width:thin}
+#spot-prototype .sp-form::before{content:'手动下单 · 现货';display:block;margin:-16px -16px 16px;padding:15px 16px;border-bottom:1px solid var(--sp-line);font-weight:500}
+#spot-prototype .sp-book-label,#spot-prototype .sp-book-row{font-size:12px;padding-inline:12px}
+#spot-prototype .sp-book-row{min-height:27px}
+#spot-prototype .sp-orders{grid-column:1/4;grid-row:5;min-width:0;background:var(--sp-panel);padding-top:0}
+#spot-prototype .sp-order-tabs{padding:14px 16px;border-bottom:1px solid var(--sp-line)}
+#spot-prototype .sp-feedback{grid-column:4;grid-row:5;padding:16px;border:0}
+#spot-prototype .sp-feedback::before{content:'投递状态';display:block;font-size:14px;margin-bottom:16px;color:var(--sp-text)}
+@media(min-width:1800px){#spot-prototype{grid-template-columns:minmax(600px,1fr) 290px 290px 320px}}
+@media(max-width:1199px){#spot-prototype{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:auto}#spot-prototype .sp-ticker{grid-column:1/-1;grid-row:auto}#spot-prototype .sp-chart-panel{grid-column:1/-1;grid-row:auto;height:350px}#spot-prototype .sp-panel[aria-label="订单簿"]{grid-column:1;grid-row:auto;max-height:580px}#spot-prototype .sp-tape{grid-column:2;grid-row:auto;height:580px}#spot-prototype .sp-form{grid-column:1;grid-row:auto;overflow:visible}#spot-prototype .sp-feedback{grid-column:2;grid-row:auto}#spot-prototype .sp-orders{grid-column:1/-1;grid-row:auto;min-height:260px}}
+@media(max-width:620px){#spot-prototype{grid-template-columns:minmax(0,1fr)}#spot-prototype .sp-panel[aria-label="订单簿"],#spot-prototype .sp-tape,#spot-prototype .sp-form,#spot-prototype .sp-feedback{grid-column:1;grid-row:auto}#spot-prototype .sp-chart-panel{height:300px}#spot-prototype .sp-live-chart{min-height:160px}#spot-prototype .sp-tape{height:420px}#spot-prototype .sp-top{gap:12px;padding:14px}#spot-prototype .sp-badge{margin-left:0}#spot-prototype .sp-connection{padding:10px 14px;gap:8px;flex-wrap:wrap}#spot-prototype .sp-order-tabs .sp-muted{margin-left:0;width:100%}#spot-prototype .sp-ticker{gap:16px;padding:16px}#spot-prototype .sp-order-tabs{gap:18px}}
+#spot-prototype .sp-header-nav{display:flex;align-items:center;gap:24px;white-space:nowrap}
+#spot-prototype .sp-header-nav a{color:inherit;text-decoration:none;font-size:13px}
+#spot-prototype .sp-header-nav a:hover{color:var(--sp-green,#00b894)}
+#spot-prototype .sp-header-nav a:focus-visible{outline:2px solid currentColor;outline-offset:4px}
+/* Keep the terminal within the viewport; panels own their scrollbars. */
+@media(min-width:1200px) and (min-height:600px){
+  html,body{height:100%;overflow:hidden}
+  #spot-prototype{height:100vh;height:100dvh;min-height:0;grid-template-columns:minmax(0,1fr) 250px 260px 300px;grid-template-rows:auto auto 70px minmax(0,2fr) minmax(190px,1fr)}
+  #spot-prototype .sp-top{flex-wrap:nowrap;gap:16px}
+  #spot-prototype .sp-panel,#spot-prototype .sp-feedback{min-height:0}
+  #spot-prototype .sp-live-chart{min-height:0}
+  #spot-prototype .sp-orders{min-height:0;display:flex;flex-direction:column;overflow:hidden;padding-bottom:0;margin-top:0}
+  #spot-prototype .sp-order-tabs{flex-shrink:0;margin-bottom:0;padding-block:10px}
+  #spot-prototype .sp-table-wrap{flex:1;min-height:0;overflow:auto;scrollbar-gutter:stable;scrollbar-width:thin}
+  #spot-prototype .sp-orders thead{position:sticky;top:0;background:var(--sp-panel);z-index:1}
+  #spot-prototype .sp-order-pagination{flex-shrink:0;border-top:1px solid var(--sp-line);padding:8px 0!important;font-size:12px}
+  #spot-prototype .sp-feedback{overflow:auto}
+}
+@media(min-width:1800px) and (min-height:600px){#spot-prototype{grid-template-columns:minmax(0,1fr) 290px 290px 320px}}
+/* Fit complete nearest-price levels around a stationary last-trade price. */
+#spot-prototype .sp-panel[aria-label="订单簿"]{display:grid;grid-template-rows:auto auto minmax(0,1fr) auto minmax(0,1fr) auto;min-height:0;overflow:hidden}
+#spot-prototype #asks,#spot-prototype #bids{display:flex;flex-direction:column;min-height:0;overflow:hidden}
+#spot-prototype #asks{justify-content:flex-end}
+#spot-prototype .sp-book-row{height:30px;min-height:30px;flex:0 0 30px;box-sizing:border-box;padding-block:5px;line-height:20px}
+#spot-prototype .sp-book-foot{padding:8px 12px;line-height:16px}
+#spot-prototype .sp-mid{margin:0;padding:12px}
+#spot-prototype #asks .sp-empty,#spot-prototype #bids .sp-empty{min-height:0;padding:12px}
+@media(max-width:1199px){#spot-prototype .sp-panel[aria-label="订单簿"]{height:min(580px,80dvh);max-height:none}}

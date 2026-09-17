@@ -1,0 +1,52 @@
+:root{--bg:#0a1018;--surface:#121d2b;--inset:#0d1622;--border:#28394c;--text:#e4edf7;--muted:#9aadc2;--accent:#48d9b0;--chart-trades:#8aabff;--positive:#102d27;color-scheme:dark;background:var(--bg);color:var(--text)}
+:root[data-theme=light]{--bg:#edf2f7;--surface:#fff;--inset:#f5f8fc;--border:#d6e0eb;--text:#1b3047;--muted:#536980;--accent:#087e63;--chart-trades:#3d63ca;--positive:#e2f4ed;color-scheme:light}
+body[data-page=dashboard] main{max-width:none;padding:16px 24px;display:flex;flex-direction:column;gap:14px;min-height:100dvh}
+body[data-page=dashboard] header{gap:18px;margin:0;padding:0 0 12px;border-color:var(--border);flex-wrap:wrap}
+body[data-page=dashboard] .brand{width:auto;color:var(--accent)}
+body[data-page=dashboard] .brand span,body[data-page=dashboard] nav a{color:var(--muted)}
+body[data-page=dashboard] nav{gap:4px}
+body[data-page=dashboard] nav a{padding:6px 10px}
+body[data-page=dashboard] nav a[aria-current]{background:var(--positive);color:var(--accent)}
+.display-controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.display-controls select,body[data-page=dashboard] button:not(.trade-tip-trigger),body[data-page=dashboard] input{font:inherit;font-size:12px;padding:7px 10px;border:1px solid var(--border);border-radius:6px;background:var(--inset);color:var(--text)}
+body[data-page=dashboard] section{background:var(--surface);border-color:var(--border);padding:16px;margin:0;min-width:0}
+body[data-page=dashboard] .muted,body[data-page=dashboard] small,body[data-page=dashboard] .metric-peak,body[data-page=dashboard] .rabbit-backlog span{color:var(--muted)}
+body[data-page=dashboard] .page-heading{margin:0;gap:8px}
+body[data-page=dashboard] h1{font-size:24px;margin:0}
+body[data-page=dashboard] h2{font-size:15px}
+body[data-page=dashboard] .eyebrow{display:none}
+body[data-page=dashboard] .page-heading p{margin:0;font-size:12px}
+body[data-page=dashboard] .live{background:var(--positive);color:var(--accent);border-color:var(--border)}
+body[data-page=dashboard] .cards{gap:12px}
+body[data-page=dashboard] .metric{color:var(--text);font-size:30px;margin:4px 0}
+body[data-page=dashboard] .metric-peak{margin-top:8px;padding-top:6px;border-color:var(--border)}
+body[data-page=dashboard] .metric-peak b,body[data-page=dashboard] .rabbit-backlog>div:first-child strong{color:var(--accent)}
+body[data-page=dashboard] .trend-panel{display:flex;flex-direction:column;min-height:180px}
+body[data-page=dashboard] canvas{height:150px;margin:8px 0 0;min-height:0}
+body[data-page=dashboard] #chart-summary{font-size:11px;margin:4px 0 0}
+body[data-page=dashboard] .legend b{color:var(--accent)}body[data-page=dashboard] .legend i{color:var(--chart-trades)}
+body[data-page=dashboard] .two-columns{gap:14px;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);min-height:0}
+body[data-page=dashboard] .two-columns section{display:flex;flex-direction:column;gap:8px;min-height:0}
+body[data-page=dashboard] .two-columns p{margin:0;font-size:11px}
+body[data-page=dashboard] .heading{gap:8px}
+body[data-page=dashboard] .badge{background:var(--inset);color:var(--muted)}
+body[data-page=dashboard] .rabbit-backlog{gap:8px;margin:0}
+body[data-page=dashboard] .rabbit-backlog>div{padding:8px 12px;background:var(--inset);border-color:var(--border)}
+body[data-page=dashboard] .rabbit-backlog strong{font-size:22px;margin:0}
+body[data-page=dashboard] .table-wrap{min-height:100px;flex:1;max-height:440px;scrollbar-color:var(--border) transparent}
+body[data-page=dashboard] table{margin:0}
+body[data-page=dashboard] th{position:sticky;top:0;z-index:1;background:var(--inset);color:var(--muted)}
+body[data-page=dashboard] td,body[data-page=dashboard] th{padding:8px;border-color:var(--border)}
+body[data-page=dashboard] .queue-meta{border-color:var(--border);padding-top:6px;color:var(--muted);font-size:11px;gap:8px;flex-wrap:wrap}
+body[data-page=dashboard] .queue-meta b{color:var(--text)}
+body[data-page=dashboard] #status{margin:0;padding:7px 12px;font-size:11px;background:var(--positive);color:var(--accent)}
+body[data-page=dashboard] #status.error,body[data-page=dashboard] .live.error{background:#48212b;color:#ffbec8}
+:root[data-theme=light] body[data-page=dashboard] #status.error,:root[data-theme=light] body[data-page=dashboard] .live.error{background:#ffe7ea;color:#9b2035}
+body[data-page=dashboard] .queue-unavailable{color:var(--muted)}
+body[data-page=dashboard] .trade-tooltip{background:var(--surface);color:var(--text);border-color:var(--border)}
+body[data-page=dashboard] .trade-tip-trigger:hover{color:var(--accent)}
+@media(min-width:1100px) and (min-height:850px){body[data-page=dashboard] main{height:100dvh;display:grid;grid-template-rows:auto auto auto minmax(170px,.7fr) minmax(290px,1.3fr) auto;gap:12px}body[data-page=dashboard] .trend-panel canvas{flex:1;height:0;min-height:85px}body[data-page=dashboard] .table-wrap{max-height:none;min-height:70px}}
+@media(max-width:1099px){body[data-page=dashboard] .two-columns{grid-template-columns:1fr}body[data-page=dashboard] .cards{grid-template-columns:repeat(2,minmax(0,1fr))}body[data-page=dashboard] header nav{flex:1;min-width:280px}}
+@media(max-width:600px){body[data-page=dashboard] main{padding:12px;gap:12px}body[data-page=dashboard] header{gap:10px}body[data-page=dashboard] .brand{width:100%}body[data-page=dashboard] section{padding:12px}body[data-page=dashboard] .cards{gap:8px}body[data-page=dashboard] .cards .muted{font-size:12px}body[data-page=dashboard] .metric{font-size:27px}body[data-page=dashboard] .metric-peak{font-size:10px}body[data-page=dashboard] .search{max-width:150px}body[data-page=dashboard] .rabbit-backlog>div{padding:8px}body[data-page=dashboard] .legend{font-size:10px;gap:8px}body[data-page=dashboard] .display-controls{gap:5px}}
+
+.preference-error{font-size:11px;color:#c55050;margin:0;max-width:240px}.display-controls select:disabled{opacity:.5}
