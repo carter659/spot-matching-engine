@@ -73,11 +73,20 @@ public class MessagingConfiguration {
         return new CommandHandler(service, result -> {
                     try { publisher.send("results-out-0", result); metrics.event("rabbitPublished"); }
                     catch (RuntimeException failure) { metrics.event("rabbitPublishFailed"); throw failure; }
-                }, update -> {
+                },                 update -> {
+                    long queued = System.nanoTime();
                     try { marketExecutor.execute(() -> {
+                    long queueWaitMs = (System.nanoTime() - queued) / 1_000_000;
+                    long sendStarted = System.nanoTime();
                     try {
                         boolean accepted = bridge.send("market-out-0", MessageBuilder.withPayload(update)
                                 .setHeader("partitionKey", update.orderBook().symbol()).build());
+                        log.info(
+                            "BOOK_LAG stage=engine.marketSent commandId={} symbol={} queueWaitMs={} sendMs={}",
+                            update.commandId(),
+                            update.orderBook() == null ? null : update.orderBook().symbol(),
+                            queueWaitMs,
+                            (System.nanoTime() - sendStarted) / 1_000_000);
                         if (accepted) metrics.event("kafkaPublished");
                         else { metrics.event("kafkaFailed"); log.warn("Market update rejected: {}", update.commandId()); }
                     } catch (RuntimeException failure) {

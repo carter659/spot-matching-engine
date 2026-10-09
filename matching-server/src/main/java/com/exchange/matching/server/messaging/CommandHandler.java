@@ -48,7 +48,14 @@ public final class CommandHandler implements Consumer<Message<OrderCommand>> {
             }
             MatchingOutcome outcome;
             try {
+                long matchStarted = System.nanoTime();
                 outcome = service.process(message.getPayload());
+                OrderCommand command = message.getPayload();
+                log.info(
+                    "BOOK_LAG stage=engine.matched orderId={} commandId={} matchMs={}",
+                    command.orderId(),
+                    command.commandId(),
+                    (System.nanoTime() - matchStarted) / 1_000_000);
                 results.accept(outcome.result());
             } catch (Exception failure) {
                 log.error("Reliable processing failed; command will be redelivered", failure);
